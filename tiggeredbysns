@@ -1,0 +1,10 @@
+import json
+
+def lambda_handler(event, context):
+    # TODO implement
+    print("In lambda")
+    print("Subject", event['Records'][0]['Sns']['Subject'])
+    print("Message", event['Records'][0]['Sns']['Message'])
+    return {
+        'statusCode': 200
+    }
