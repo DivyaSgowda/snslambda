@@ -1,0 +1,14 @@
+import boto3
+
+def lambda_handler(event, context):
+
+    bucket = event['Records'][0]['s3']['bucket']['name']
+    key =    event['Records'][0]['s3']['object']['key']
+
+    sns = boto3.client('sns')
+    sns.publish(
+        TopicArn = 'arn:aws:sns:us-east-2:462352741814:SNSnotification',
+        Subject = 'File uploaded: ' + key,
+        Message = 'New Operation on S3 bucket \n'+
+                  'File was uploaded to bucket: ' + bucket
+    )
